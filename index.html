@@ -69,7 +69,7 @@
 </head>
 <body>
 
-<audio autoplay loop>
+<audio loop id="bgMusic">
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -90,6 +90,10 @@
   const bottomImg = document.getElementById("bottomImg");
 
   let yesScale = 1;
+
+  document.addEventListener("click", () => {
+  document.getElementById("bgMusic").play();
+}, { once: true }); 
 
   noBtn.addEventListener("mouseenter", () => {
     noBtn.style.transform = "scale(0.6)";
