@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>h-hellow?</title>
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #ffe6f0;
+    margin: 0;
+    overflow: hidden; /* no scrolling */
+  }
+
+  h1 {
+    margin-bottom: 40px;
+  }
+
+  .buttons {
+    position: relative;
+    width: 400px;
+    height: 200px;
+  }
+
+  button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: absolute;
+  }
+
+  #yes {
+    left: 50px;
+    background-color: #ff4d6d;
+    color: white;
+  }
+
+  #no {
+    right: 50px;
+    background-color: #999;
+    color: white;
+  }
+
+  /* Bottom-right image */
+  #cornerImg {
+    position: fixed;
+    bottom: 1px;
+    right: 40px;
+    width: 350px;
+  }
+
+  /* Bottom-center image (hidden initially) */
+  #bottomImg {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<h1 id="question">serias mi valentin?</h1>
+
+<div class="buttons" id="btnContainer">
+  <button id="yes">sii</button>
+  <button id="no">no.</button>
+</div>
+
+<!-- Images -->
+<img id="cornerImg" src="pc.png">
+<img id="bottomImg" src="yay.png">
+
+<script>
+  const noBtn = document.getElementById("no");
+  const yesBtn = document.getElementById("yes");
+  const bottomImg = document.getElementById("bottomImg");
+
+  let yesScale = 1;
+
+  noBtn.addEventListener("mouseenter", () => {
+    noBtn.style.transform = "scale(0.6)";
+
+    const randomX = Math.random() * 350;
+    const randomY = Math.random() * 150;
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+
+    yesScale += 0.1;
+    yesBtn.style.transform = `scale(${yesScale})`;
+  });
+
+  yesBtn.addEventListener("click", () => {
+    document.getElementById("question").innerText = "YAY ❤️";
+    document.getElementById("btnContainer").style.display = "none";
+    document.getElementById("cornerImg").style.display = "none";
+    bottomImg.style.display = "block"; // show bottom center image
+  });
+</script>
+
+</body>
+</html>
